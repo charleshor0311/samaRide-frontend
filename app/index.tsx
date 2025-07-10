@@ -1,81 +1,53 @@
-import { View, Text, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Dimensions,
+  ScrollView,
+} from 'react-native';
 import { useRouter } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as Animatable from 'react-native-animatable';
 import { Car, MapPin, Shield, Users } from 'lucide-react-native';
 
-const { width, height } = Dimensions.get('window');
-
 export default function WelcomeScreen() {
   const router = useRouter();
 
-  const features = [
-    {
-      icon: Car,
-      title: 'Safe Rides',
-      description: 'Verified drivers and secure journeys'
-    },
-    {
-      icon: MapPin,
-      title: 'Real-time Tracking',
-      description: 'Track your ride in real-time'
-    },
-    {
-      icon: Shield,
-      title: 'Secure Payment',
-      description: 'Touch n Go eWallet integration'
-    },
-    {
-      icon: Users,
-      title: 'Community',
-      description: 'Connect with fellow travelers'
-    }
-  ];
-
   return (
-    <View style={styles.container}>
+    <View style={{ flex: 1, backgroundColor: '#1E40AF' }}>
       <LinearGradient
         colors={['#2563EB', '#1D4ED8', '#1E40AF']}
         style={styles.gradient}
       >
         <Animatable.View animation="fadeInUp" delay={300} style={styles.header}>
           <Text style={styles.logo}>SamaRide</Text>
-          <Text style={styles.tagline}>Your Journey, Our Priority</Text>
         </Animatable.View>
 
-        <Animatable.View animation="fadeInUp" delay={600} style={styles.heroSection}>
-          <Car size={120} color="#FFFFFF" strokeWidth={1.5} />
-          <Text style={styles.heroTitle}>
-            Ride Together,{'\n'}Save Together
-          </Text>
+        <Animatable.View
+          animation="fadeInUp"
+          delay={600}
+          style={styles.heroSection}
+        >
+          <Text style={styles.heroTitle}>Ride Together, Save Together</Text>
           <Text style={styles.heroSubtitle}>
-            Join Malaysia's most trusted ride-sharing community
+            Malaysia's new trusted ride-sharing community
           </Text>
         </Animatable.View>
 
-        <Animatable.View animation="fadeInUp" delay={900} style={styles.featuresGrid}>
-          {features.map((feature, index) => (
-            <Animatable.View
-              key={index}
-              animation="fadeInUp"
-              delay={1200 + index * 100}
-              style={styles.featureCard}
-            >
-              <feature.icon size={24} color="#2563EB" />
-              <Text style={styles.featureTitle}>{feature.title}</Text>
-              <Text style={styles.featureDescription}>{feature.description}</Text>
-            </Animatable.View>
-          ))}
-        </Animatable.View>
-
-        <Animatable.View animation="fadeInUp" delay={1600} style={styles.buttonContainer}>
+        <Animatable.View
+          animation="fadeInUp"
+          delay={1600}
+          style={styles.buttonContainer}
+        >
           <TouchableOpacity
             style={styles.primaryButton}
             onPress={() => router.push('/auth/login')}
           >
-            <Text style={styles.primaryButtonText}>Get Started</Text>
+            <Text style={styles.primaryButtonText}>Log In</Text>
           </TouchableOpacity>
-          
+
           <TouchableOpacity
             style={styles.secondaryButton}
             onPress={() => router.push('/auth/register')}
@@ -89,14 +61,10 @@ export default function WelcomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   gradient: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 60,
-    paddingBottom: 40,
+    justifyContent: 'center',
   },
   header: {
     alignItems: 'center',
@@ -119,13 +87,13 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   heroTitle: {
-    fontSize: 28,
+    fontSize: 20,
     fontFamily: 'Inter-Bold',
     color: '#FFFFFF',
     textAlign: 'center',
     marginTop: 20,
     marginBottom: 12,
-    lineHeight: 34,
+    lineHeight: 30,
   },
   heroSubtitle: {
     fontSize: 16,
